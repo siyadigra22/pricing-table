@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This webpage is a sample webpage, built by Siya :)">
+<link rel="icon" href="./siya_logo.png" type="image/x-icon">
+    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            color: #f2f5f7;
+            font-family: sans-serif;
+            letter-spacing: 1px;
+            font-weight: 300;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+        }
+
+        nav {
+            height: 6rem;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0.21);
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            position: fixed;
+            z-index: 10;
+        }
+
+        /*Styling logo*/
+        .logo {
+            padding: 1vh 1vw;
+            text-align: center;
+        }
+
+        .logo img {
+            height: 5rem;
+            width: 5rem;
+        }
+
+        /*Styling Links*/
+        .nav-links {
+            display: flex;
+            list-style: none;
+            width: 88vw;
+            padding: 0 0.7vw;
+            justify-content: space-evenly;
+            align-items: center;
+            text-transform: uppercase;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            margin: 0 0.7vw;
+        }
+
+        .nav-links li a:hover {
+            color: #61DAFB;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links li a::before {
+            content: "";
+            display: block;
+            height: 3px;
+            width: 0%;
+            background-color: #61DAFB;
+            position: absolute;
+            transition: all ease-in-out 250ms;
+            margin: 0 0 0 10%;
+        }
+
+        .nav-links li a:hover::before {
+            width: 80%;
+        }
+
+        /*Styling Buttons*/
+        .login-button {
+            background-color: transparent;
+            border: 1.5px solid #f2f5f7;
+            border-radius: 2em;
+            padding: 0.6rem 0.8rem;
+            margin-left: 2vw;
+            font-size: 1rem;
+            cursor: pointer;
+
+        }
+
+        .login-button:hover {
+            color: #131418;
+            background-color: #f2f5f7;
+            border: 1.5px solid #f2f5f7;
+            transition: all ease-in-out 350ms;
+        }
+
+        .join-button {
+            color: #131418;
+            background-color: #61DAFB;
+            border: 1.5px solid #61DAFB;
+            border-radius: 2em;
+            padding: 0.6rem 0.8rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .join-button:hover {
+            color: #f2f5f7;
+            background-color: transparent;
+            border: 1.5px solid #f2f5f7;
+            transition: all ease-in-out 350ms;
+        }
+
+        /*Styling Hamburger Icon*/
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background: #f2f5f7;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        /*Stying for small screens*/
+        @media screen and (max-width: 800px) {
+            nav {
+                position: fixed;
+                z-index: 3;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                cursor: pointer;
+                right: 5%;
+                top: 50%;
+                transform: translate(-5%, -50%);
+                z-index: 2;
+                transition: all 0.7s ease;
+            }
+
+            .nav-links {
+                position: fixed;
+                background: #131418;
+                height: 100vh;
+                width: 100%;
+                flex-direction: column;
+                clip-path: circle(50px at 90% -20%);
+                -webkit-clip-path: circle(50px at 90% -10%);
+                transition: all 1s ease-out;
+                pointer-events: none;
+            }
+
+            .nav-links.open {
+                clip-path: circle(1000px at 90% -10%);
+                -webkit-clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                opacity: 0;
+            }
+
+            .nav-links li:nth-child(1) {
+                transition: all 0.5s ease 0.2s;
+            }
+
+            .nav-links li:nth-child(2) {
+                transition: all 0.5s ease 0.4s;
+            }
+
+            .nav-links li:nth-child(3) {
+                transition: all 0.5s ease 0.6s;
+            }
+
+            .nav-links li:nth-child(4) {
+                transition: all 0.5s ease 0.7s;
+            }
+
+            .nav-links li:nth-child(5) {
+                transition: all 0.5s ease 0.8s;
+            }
+
+            .nav-links li:nth-child(6) {
+                transition: all 0.5s ease 0.9s;
+                margin: 0;
+            }
+
+            .nav-links li:nth-child(7) {
+                transition: all 0.5s ease 1s;
+                margin: 0;
+            }
+
+            li.fade {
+                opacity: 1;
+            }
+        }
+
+        /*Animating Hamburger Icon on Click*/
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            transition: all 0.7s ease;
+            width: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Add styles for the hero section */
+        .hero-section {
+            height: 100vh;
+            background-image: url('https://24.media.tumblr.com/tumblr_m06rduSMXP1qd7m1so1_500.gif');
+            /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Animate text */
+        .animated-text {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Countdown timer styles */
+        .countdown-timer {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            /* Add padding */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Add background color */
+            border: 2px solid #fff;
+            /* Add border */
+            border-radius: 10px;
+            /* Add border radius */
+            display: inline-block;
+            /* Display as inline block */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            /* Add shadow */
+        }
+
+        /* Modify the countdown timer digits */
+        .countdown-timer span {
+            padding: 5px 10px;
+            /* Add padding */
+            margin: 0 5px;
+            /* Add margin */
+            background-color: #131418;
+            /* Add background color */
+            border: 1px solid #fff;
+            /* Add border */
+            border-radius: 5px;
+            /* Add border radius */
+        }
+
+        /* Style the text inside the countdown timer */
+        .countdown-timer span:nth-child(even) {
+            color: #61DAFB;
+            /* Change text color */
+        }
+
+        .countdown-timer span:nth-child(odd) {
+            color: #f2f5f7;
+            /* Change text color */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+
+
+        /* Add these styles to your existing CSS */
+
+        /* Pricing table container */
+        .pricing-table {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            background-image: url('https://64.media.tumblr.com/a41ac701a601208e54fe37aad1c7e440/tumblr_ofo8hcPNoJ1vsjcxvo1_640.gif');
+            background-size: cover;
+            background-position: center;
+            padding: 50px 0;
+            /* Adjust padding as needed */
+        }
+
+        /* Pricing card styles */
+        .pricing-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 30%;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Pricing header styles */
+        .pricing-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+            /* Change text color */
+        }
+
+        .pricing-header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ccc;
+            /* Change text color */
+        }
+
+        /* Price styles */
+        .price {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .discounted-price {
+            color: #61DAFB;
+            /* Change text color */
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #ccc;
+            /* Change text color */
+            margin-left: 10px;
+        }
+
+        .savings {
+            color: #61DAFB;
+            /* Change text color */
+            font-size: 1.2rem;
+        }
+
+        /* Extra offer styles */
+        .extra-offer {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ccc;
+            /* Change text color */
+        }
+
+        /* Add to cart button styles */
+        .add-to-cart {
+            background-color: #61DAFB;
+            /* Change button background color */
+            color: #fff;
+            /* Change button text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #55c2e0;
+            /* Change button background color on hover */
+        }
+
+        /* Renewal price styles */
+        .renewal-price {
+            font-size: 1rem;
+            color: #999;
+            /* Change text color */
+            margin-top: 20px;
+        }
+
+        /* Features styles */
+        .features {
+            margin-top: 20px;
+        }
+
+        .features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            /* Change text color */
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #ccc;
+            /* Change text color */
+        }
+
+        /* Glassmorphism Effect */
+        .pricing-card {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-card:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            border-radius: 30px;
+        }
+
+        /* Hover effect for pricing card */
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Underline effect for pricing card header */
+        .pricing-header h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #61DAFB;
+            /* Change underline color */
+            margin: 10px auto;
+        }
+
+        /* Hover effect for add to cart button */
+        .add-to-cart:hover {
+            background-color: #55c2e0;
+            /* Change button background color on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Hover effect for features list items */
+        .features li:hover {
+            color: #61DAFB;
+            /* Change text color on hover */
+            cursor: pointer;
+        }
+
+
+
+        footer {
+            background-repeat: no-repeat;
+            background-image: url('https://i.gifer.com/3UXi.gif');
+            background-size: cover;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-nav a {
+            color: #61DAFB;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #fff;
+        }
+
+        .footer-social {
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-credits {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+        }
+
+        .footer-credits a {
+            color: #61DAFB;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-credits a:hover {
+            color: #fff;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add animation to footer */
+        footer {
+            animation: fadeInUp 1s ease;
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .login-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            border-radius: 10px;
+            transform: scale(0.5);
+            animation: springUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes springUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            70% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: black;
+            /* Updated text color */
+        }
+
+        .login-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Siya's Task</title>
+</head>
+
+<body>
+
+    <!-- Modal popup ad -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <!-- Your ad content goes here -->
+            <h2 style="color: black;">Special Offer!</h2>
+            <p style="color: black;">Get 20% off on all products. Limited time offer!</p>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <img src="./siya_logo.png" alt="Logo Image">
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Solutions</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><button class="login-button" href="#">Login</button></li>
+            <li><button class="join-button" href="#">Join</button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="animated-text">Everything You Need to Create a Website
+                <br>Up to 75% off Hosting + Website Builder
+            </h1>
+            <p class="animated-text">✅ Free Domain<br>
+                ✅Website Migration<br>
+                ✅24/7 Customer Support<br> <br>
+                <b>Offer valid for limited time</b>
+            </p>
+        </div>
+        <!-- Countdown timer -->
+        <div class="countdown-timer" id="countdown">
+            <span id="days">00</span>d
+            <span id="hours">00</span>h
+            <span id="minutes">00</span>m
+            <span id="seconds">00</span>s
+        </div>
+    </div>
+    </div>
+
+    <!-- After the hero section -->
+    <!-- Pricing table container -->
+    <div class="pricing-table">
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h2>Premium</h2>
+                <p>Everything you need to create your website</p>
+            </div>
+            <div class="pricing-details">
+                <div class="price">
+                    <span class="discounted-price">₹149.00/mo</span>
+                    <span class="original-price">₹599.00/mo</span>
+                    <span class="savings">SAVE 75%</span>
+                </div>
+                <div class="extra-offer">
+                    +2 months FREE
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                <p class="renewal-price">₹249.00/mo when you renew</p>
+            </div>
+            <div class="features">
+                <h3>Top Features</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Standard Performance</li>
+                    <li><i class="fas fa-check-circle"></i> 100 Websites</li>
+                    <li><i class="fas fa-check-circle"></i> 100 GB SSD Storage</li>
+                    <li><i class="fas fa-times-circle"></i> Weekly Backups</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Free SSL</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Bandwidth</li>
+                    <li><i class="fas fa-check-circle"></i> Free Email</li>
+                    <li><i class="fas fa-check-circle"></i> Free Domain (₹799.00 value)</li>
+                    <li><i class="fas fa-check-circle"></i> Free CDN</li>
+                    <li><i class="fas fa-times-circle"></i> Dedicated IP Address</li>
+                    <li><i class="fas fa-times-circle"></i> Managed WordPress</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Business Plan -->
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h2>Business</h2>
+                <p>Everything you need to create your website</p>
+            </div>
+            <div class="pricing-details">
+                <div class="price">
+                    <span class="discounted-price">₹149.00/mo</span>
+                    <span class="original-price">₹599.00/mo</span>
+                    <span class="savings">SAVE 75%</span>
+                </div>
+                <div class="extra-offer">
+                    +2 months FREE
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                <p class="renewal-price">₹249.00/mo when you renew</p>
+            </div>
+            <div class="features">
+                <h3>Top Features</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Increased Performance</li>
+                    <li><i class="fas fa-check-circle"></i> 150 Websites</li>
+                    <li><i class="fas fa-check-circle"></i> 100 GB SSD Storage</li>
+                    <li><i class="fas fa-times-circle"></i> Weekly Backups</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Free SSL</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Bandwidth</li>
+                    <li><i class="fas fa-check-circle"></i> Free Email</li>
+                    <li><i class="fas fa-check-circle"></i> Free Domain (₹799.00 value)</li>
+                    <li><i class="fas fa-check-circle"></i> Free CDN</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated IP Address</li>
+                    <li><i class="fas fa-times-circle"></i> Managed WordPress</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Startup Plan -->
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h2>Startup</h2>
+                <p>Everything you need to create your website</p>
+            </div>
+            <div class="pricing-details">
+                <div class="price">
+                    <span class="discounted-price">₹149.00/mo</span>
+                    <span class="original-price">₹599.00/mo</span>
+                    <span class="savings">SAVE 75%</span>
+                </div>
+                <div class="extra-offer">
+                    +2 months FREE
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+                <p class="renewal-price">₹249.00/mo when you renew</p>
+            </div>
+            <div class="features">
+                <h3>Top Features</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Maximum Performance</li>
+                    <li><i class="fas fa-check-circle"></i> 300 Websites</li>
+                    <li><i class="fas fa-check-circle"></i> 100 GB SSD Storage</li>
+                    <li><i class="fas fa-check-circle"></i> Weekly Backups</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Free SSL</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Bandwidth</li>
+                    <li><i class="fas fa-check-circle"></i> Free Email</li>
+                    <li><i class="fas fa-check-circle"></i> Free Domain (₹799.00 value)</li>
+                    <li><i class="fas fa-check-circle"></i> Free CDN</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated IP Address</li>
+                    <li><i class="fas fa-check-circle"></i> Managed WordPress</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const links = document.querySelectorAll(".nav-links li");
+
+        hamburger.addEventListener('click', () => {
+            //Animate Links
+            navLinks.classList.toggle("open");
+            links.forEach(link => {
+                link.classList.toggle("fade");
+            });
+
+            //Hamburger Animation
+            hamburger.classList.toggle("toggle");
+        });
+    </script>
+
+    <script>
+        // Countdown timer implementation
+        // Set the date for the countdown (example: 1 day from now)
+        const countdownDate = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
+
+        // Update the countdown every second
+        const countdown = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            // Calculate remaining days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown timer
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Format time to always display two digits
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+
+        // Animation for hero section content
+        document.addEventListener("DOMContentLoaded", function () {
+            const animatedElements = document.querySelectorAll(".animated-text");
+
+            animatedElements.forEach(function (element) {
+                element.classList.add("show");
+            });
+        });
+    </script>
+
+    <script>
+        // Show the modal when the page loads
+        window.onload = function () {
+            document.getElementById('myModal').style.display = 'block';
+        };
+
+        // Close the modal when the close button is clicked
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'none';
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.querySelector('.login-button');
+            const loginModal = document.getElementById('login-modal');
+            const closeModal = document.querySelector('.login-modal .close');
+
+            loginBtn.addEventListener('click', function () {
+                loginModal.style.display = "block";
+            });
+
+            closeModal.addEventListener('click', function () {
+                loginModal.style.display = "none";
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === loginModal) {
+                    loginModal.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.querySelector('.login-button');
+            const joinBtn = document.querySelector('.join-button');
+            const modal = document.getElementById('login-modal');
+            const modalContent = modal.querySelector('.login-modal-content');
+            const closeModal = modal.querySelector('.close');
+
+            function setupModal(title, fields) {
+                modalContent.innerHTML = `<span class="close">&times;</span>
+                                          <h2 style="color: #000;">${title}</h2>
+                                          <form class="login-form">${fields.map(field =>
+                    `<input type="${field.type}" placeholder="${field.placeholder}" required>`).join('')}
+                                          <button type="submit">${title.split(' ')[0]}</button>
+                                          </form>`;
+
+                // Rebind close event due to new content
+                modalContent.querySelector('.close').addEventListener('click', function () {
+                    modal.style.display = "none";
+                });
+            }
+
+            loginBtn.addEventListener('click', function () {
+                setupModal("Login to Your Account", [{ type: "text", placeholder: "Username" }, { type: "password", placeholder: "Password" }]);
+                modal.style.display = "block";
+            });
+
+            joinBtn.addEventListener('click', function () {
+                setupModal("Signup For an Account", [{ type: "text", placeholder: "Email-id" }, { type: "text", placeholder: "Contact Number" }, { type: "text", placeholder: "Your Name" }, { type: "text", placeholder: "Username" }, { type: "password", placeholder: "Password" }, { type: "password", placeholder: "Repeat Password" }]);
+                modal.style.display = "block";
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><img src="./siya_logo.png" alt=""></div>
+            <nav class="footer-nav">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-credits">
+            &copy; 2024 Your Company | Designed by <a href="https://www.siyadigra.me">Siya Digra with <3< /a>
+        </div>
+    </footer>
+
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: #000;">Login to Your Account</h2>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
